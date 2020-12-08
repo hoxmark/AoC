@@ -1,14 +1,13 @@
-### Task 5 
+### Task 6
 from functools import reduce
 
 with open('input.txt') as f:
     lines = f.read()
 
 inp = [l.split('\n') for l in lines.split("\n\n")]
-#print(inp)
+
 def count_list(i):
     group = [set(list(x)) for x in i]
-    #print(group)
     res = reduce((lambda x, y: x | y), group)
     return len(res)
 
