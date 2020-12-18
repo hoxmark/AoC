@@ -13,10 +13,6 @@ possibilities = defaultdict(int)
 possibilities[0] = 1
 
 for i in lines[1:]:
-    # print(i)
-    # print(possibilities[i-1])
-    # print(possibilities[i-2])
-    # print(possibilities[i-3])
     possibilities[i] = possibilities[i-1] + possibilities[i-2] + possibilities[i-3]
 
 res = possibilities[max(lines)]

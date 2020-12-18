@@ -1,5 +1,4 @@
 ### Task 1 
-##lines = [1721,979,366,299,675,1456]
 import itertools
 
 with open('input.txt') as f:

@@ -1,11 +1,10 @@
-### Task 1 
+### Task 2
 import itertools
 import numpy as np
 with open('input.txt') as f:
     seats = [['.']+list(l.rstrip())+['.'] for l in f]
 
 x_max, y_max = len(seats[0]), len(seats)
-
 pad_y = ['.' for x in range(x_max)]
 
 seats.insert(0,pad_y)
@@ -30,7 +29,6 @@ def number_of_seats_in_use(grid):
 
 def update(grid, debug=False):
     newGrid = np.copy(grid)
-
     print(grid)
 
     for i in range(y_max): #for y
@@ -39,28 +37,26 @@ def update(grid, debug=False):
                 print('i', i, 'j', j, 'val', grid[i,j])
             if grid[i,j]=='.':                
                 continue
-
             
             n = min(i,j)
             m = min(*grid[i+1:, :j].shape)
             # compute 8-neghbor sum            
             total = np.array([
-                occupied_seat_in_sight(debug, grid[i, :j][::-1]), # venstre 
-                occupied_seat_in_sight(debug, grid[i, j+1:]), # Bort til høyre
-                occupied_seat_in_sight(debug, grid[i+1:, j]), # Nedover
-                occupied_seat_in_sight(debug, grid[:i, j][::-1]), # Oppover
-                occupied_seat_in_sight(debug, grid[i-n:i, j-n:j].diagonal(0)[::-1]), #VENSTRE TOPP 
-                occupied_seat_in_sight(debug, np.flipud(grid[:i, j+1:]).diagonal()), # HØYRE TOPP 
-                occupied_seat_in_sight(debug, grid[i+1:, j+1:].diagonal()), # NED HØYRE
-                occupied_seat_in_sight(debug, np.flipud(grid[i+1:i+1+m, j-m:j]).diagonal()[::-1]), #NED VENSTRE
+                occupied_seat_in_sight(debug, grid[i, :j][::-1]), # left
+                occupied_seat_in_sight(debug, grid[i, j+1:]), # right
+                occupied_seat_in_sight(debug, grid[i+1:, j]), # down
+                occupied_seat_in_sight(debug, grid[:i, j][::-1]), # up
+                occupied_seat_in_sight(debug, grid[i-n:i, j-n:j].diagonal(0)[::-1]), # left top 
+                occupied_seat_in_sight(debug, np.flipud(grid[:i, j+1:]).diagonal()), # right top
+                occupied_seat_in_sight(debug, grid[i+1:, j+1:].diagonal()), # down right
+                occupied_seat_in_sight(debug, np.flipud(grid[i+1:i+1+m, j-m:j]).diagonal()[::-1]), #down left 
             ])
             
             total = total.astype(int).sum()
             if debug:
                 print(total)
                 print('------')
-            
-            #print(total)            
+                             
             if grid[i, j] == 'L':                
                 if (total == 0):
                     newGrid[i, j] = '#'

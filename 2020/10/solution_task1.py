@@ -12,8 +12,7 @@ def find_jolts(l):
     l = l
     choises_diff = []    
 
-    def choose(posibilites):
-        #nonlocal val, l        
+    def choose(posibilites):   
         return posibilites[0]
 
 

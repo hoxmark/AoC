@@ -20,6 +20,7 @@ cube=np.pad(cube, ((pad_size+1,pad_size+1), (pad_size,pad_size), (pad_size,pad_s
 print(cube)
 print(cube.shape)
 
+#borrowed from the internett
 def surrounding(x, idx, radius=1, fill=0):
     """ 
     Gets surrounding elements from a numpy array 
@@ -65,15 +66,9 @@ def surrounding(x, idx, radius=1, fill=0):
 
 
 def check_idx_and_return(idx, cube):
-    #return True
-    #print('cube.shape', cube.shape)
     current_val = cube[idx]
-    #print(idx)
-    #print('current_val',current_val)
     nearby_cube = surrounding(cube,idx)    
-    #print('nearby_cube',nearby_cube)
     res = np.sum(nearby_cube) - current_val #dont want to count the middle, its not an neighbour
-    #print(res)
     if current_val == 0:
         if res == 3:        
             return 1

@@ -13,6 +13,7 @@ cube = np.stack((z_minus_1,z,z_plus_1), axis=0)
 pad_size=15
 cube=np.pad(cube, ((pad_size,pad_size), (pad_size,pad_size), (pad_size,pad_size)), 'constant')
 
+#borrowed from the internett
 def surrounding(x, idx, radius=1, fill=0):
     """ 
     Gets surrounding elements from a numpy array 
@@ -55,27 +56,16 @@ def surrounding(x, idx, radius=1, fill=0):
     if fill is None: return x[slices]
     return np.pad(x[slices], paddings, 'constant', constant_values=fill)
 
-
-
-
-
 def check_idx_and_return(idx, cube):
-    #return True
-    #print('cube.shape', cube.shape)
     current_val = cube[idx]
-    #print(idx)
-    #print('current_val',current_val)
     nearby_cube = surrounding(cube,idx)    
-    #print('nearby_cube',nearby_cube)
     res = np.sum(nearby_cube) - current_val #dont want to count the middle, its not an neighbour
-    #print(res)
     if current_val == 0:
         if res == 3:        
             return 1
     else:
         if res == 2 or res ==3:
-            return 1
-    
+            return 1    
     return 0
 
 
@@ -83,11 +73,7 @@ def check_idx_and_return(idx, cube):
 
 from itertools import product
 amin, amax = 0, cube.shape[0]
-#print(len(cube.shape))
-#print(amin, amax)
 l = list(product(range(amin, amax), repeat=3))
-#print(len(l))
-
 for c in range(1,7):
     new_cube = cube.copy()
     check_id = functools.partial(check_idx_and_return, cube=cube)
