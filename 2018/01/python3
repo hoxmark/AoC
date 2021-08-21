@@ -1,0 +1,18 @@
+import functools
+
+with open("input.txt") as f:   
+    data = [int(l.strip()) for l in f.readlines()]
+
+val = functools.reduce(lambda s, v: s+v, data)
+
+print(val)
+
+value = 0
+history = []
+for i in data: 
+    value += i
+    if value in history:
+        print(value, "seen twice")
+
+    else: 
+        history.append(value)
