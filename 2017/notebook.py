@@ -148,15 +148,20 @@ def day2_2(rows):
 
 do(2)
 # In[103]:
+def go_up(x):return (x[0]-1, x[1])
+def go_down(x):return (x[0]+1, x[1])
+def go_left(x):return (x[0], x[1]-1)
+def go_right(x):return (x[0], x[1]+1)
+
+def go_up_left(x):return (x[0]-1, x[1])
+def go_up_right(x):return (x[0]+1, x[1])
+def go_down_left(x):return (x[0], x[1]-1)
+def go_down_right(x):return (x[0], x[1]+1)
 def make_square(iterations):
-    def go_up(x):return (x[0]-1, x[1])
-    def go_down(x):return (x[0]+1, x[1])
-    def go_left(x):return (x[0], x[1]-1)
-    def go_right(x):return (x[0], x[1]+1)
     def is_free(x):
         if grid[x] == 0: return True
         else: return False
-    
+
     size = int(math.sqrt(iterations))*3
     grid = np.zeros((size,size))    
     origo = (int(size/2), int(size/2))
@@ -170,23 +175,20 @@ def make_square(iterations):
         counter_int+=1
         if is_free(go_right(counter))  and is_free(go_up(counter)) and not is_free(go_left(counter)): #is_free(go_down(counter))
             counter = go_up(counter)
-            grid[counter] = counter_int 
 
         elif is_free(go_right(counter)) and not is_free(go_down(counter)) and is_free(go_up(counter)) and is_free(go_left(counter)):
             counter = go_left(counter)
-            grid[counter] = counter_int 
         
         elif not is_free(go_right(counter)) and not is_free(go_down(counter)) and is_free(go_up(counter)) and is_free(go_left(counter)):
             counter = go_left(counter)
-            grid[counter] = counter_int 
         
         elif not is_free(go_right(counter)) and is_free(go_down(counter)) and is_free(go_left(counter)): #
             counter = go_down(counter)
-            grid[counter] = counter_int 
         
         elif is_free(go_right(counter)) and is_free(go_down(counter)) and not is_free(go_up(counter)) : #is_free(go_left(counter))
             counter = go_right(counter)
-            grid[counter] = counter_int 
+        
+        grid[counter] = counter_int 
        
     return grid, origo
 
@@ -199,8 +201,57 @@ def day3_1(value):
 in3 = 325489
 # day3_1(325489)
 do(3)
+#%% 
+def make_square_sumed(iterations):
+    def is_free(x):
+        if grid[x] == 0: return True
+        else: return False
+    def sum_adjacent(x):
+        return sum([
+            grid[go_down(x)], 
+            grid[go_up(x)],
+            grid[go_left(x)],
+            grid[go_right(x)],
+            grid[go_left(go_down(x))], 
+            grid[go_right(go_down(x))], 
+            grid[go_left(go_up(x))],
+            grid[go_right(go_up(x))]
+            ])
+    size = int(math.sqrt(iterations))*3
+    grid = np.zeros((size,size))    
+    origo = (int(size/2), int(size/2))
+        
+    counter_int = 2
+    grid[origo] = 1
+    counter = (origo[0]+0, origo[1]+1)
+    grid[counter] = 1
+    
+    while counter_int < iterations:
+        counter_int+=1
+        if is_free(go_right(counter))  and is_free(go_up(counter)) and not is_free(go_left(counter)): #is_free(go_down(counter))
+            counter = go_up(counter)
 
-# In[114]:
+        elif is_free(go_right(counter)) and not is_free(go_down(counter)) and is_free(go_up(counter)) and is_free(go_left(counter)):
+            counter = go_left(counter)
+        
+        elif not is_free(go_right(counter)) and not is_free(go_down(counter)) and is_free(go_up(counter)) and is_free(go_left(counter)):
+            counter = go_left(counter)
+        
+        elif not is_free(go_right(counter)) and is_free(go_down(counter)) and is_free(go_left(counter)): #
+            counter = go_down(counter)
+        
+        elif is_free(go_right(counter)) and is_free(go_down(counter)) and not is_free(go_up(counter)) : #is_free(go_left(counter))
+            counter = go_right(counter)
+        
+        summed_val = sum_adjacent(counter)
+        grid[counter] = summed_val
+        if summed_val >= iterations:
+            return grid, origo,int(summed_val)
 
+    return grid, origo, -1
+def day3_2(value):  
+    grid, origo, ans = make_square_sumed(325489)    
+    return ans
 
-# 
+do(3)
+# %%
