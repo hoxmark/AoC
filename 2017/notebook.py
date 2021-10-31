@@ -219,3 +219,45 @@ def day3_2(value):
 do(3)
 
 #%% Day 4
+#in4 = data(4, test=[['aa', 'bb', 'cc', 'dd'], ['aa', 'bb', 'cc', 'dd', 'aa']], parser=lambda x: mapt(str, x))
+in4 = data(4,parser=lambda x: x.split())
+# in4 = data(4, test=[['abcde', 'fghij'], ['abcde', 'xyz', 'ecdab']], parser=lambda x: mapt(str, x))
+# in4
+# %%
+def day4_1(passphrases):
+    return len([p for p in passphrases if len(p)==len(set(p))])
+
+def day4_2(passphrases):
+    passphrases = [["".join(sorted(a)) for a in p] for p in passphrases] 
+    return len([p for p in passphrases if len(p)==len(set(p))])
+do(4)
+
+# %% Day 5
+# in5 = [0,3,0,1,-3]
+in5 = data(5, parser=int)
+def day5_1(instructions_set):
+    instructions_set = list(instructions_set)
+    counter, steps = 0, 0 
+    while counter < len(instructions_set):
+        next_counter  = instructions_set[counter]
+        instructions_set[counter] += 1
+        counter += next_counter
+        steps += 1
+    return steps
+
+def day5_2(instructions_set):
+    counter, steps = 0, 0 
+    while counter < len(instructions_set) and counter >= 0:
+        next_counter  = instructions_set[counter]
+        if next_counter >=3:
+            instructions_set[counter] -= 1
+        else:      
+            instructions_set[counter] += 1
+        steps += 1
+        counter += next_counter
+    return steps
+# day5_2(in5)
+do(5)
+
+
+# %%
