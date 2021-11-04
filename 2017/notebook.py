@@ -260,4 +260,70 @@ def day5_2(instructions_set):
 do(5)
 
 
+# %% day 6
+in6 = data(6, parser=lambda x:  mapt(int, x.split("\t")))[0]
+in6 = (0, 2, 7, 0)
+# %%
+seen_states = set()
+state = in6
+num_of_states = len(state)
+num_of_iteration = 0
+print(state)
+while state not in seen_states:
+    seen_states.add(state)
+    state = list(state)
+    m = max(state) 
+    bank_to_redistribute = state.index(m)
+    print(m,num_of_states)
+    left_over, times = divmod(m,num_of_states)
+    print(left_over,'times->',times)
+    if times != 0: 
+        val = m//times
+    else: 
+        val = int(m/num_of_states)
+    state[bank_to_redistribute] = 0
+    for i in range (1, times+1):
+        index = (bank_to_redistribute+i)%(num_of_states)
+        state[index] = state[index] + val
+
+    state[bank_to_redistribute] += left_over
+    state = tuple(state)
+    num_of_iteration += 1
+    print(state)
+
+num_of_iteration
+# %%
+# state = (0,2,7,0)
+# state.index(max(state))
+
+# %%
+
+in6 = data(6, parser=lambda x:  mapt(int, x.split("\t")))[0]
+# in6 = (0, 2, 7, 0)
+
+seen_states = set()
+state = in6
+num_of_states = len(state)
+num_of_iteration = 0
+print(state)
+while state not in seen_states:
+    seen_states.add(state)
+    state = list(state)
+    m = max(state) 
+    bank_to_redistribute = state.index(m)
+    # print(m,num_of_states)
+    left_over, times = divmod(m,num_of_states)
+
+    state[bank_to_redistribute] = 0
+    for i in range(m):
+        index = (bank_to_redistribute+1+i)%(num_of_states)
+        state[index] += 1
+        # print(state)
+    state = tuple(state)
+    num_of_iteration+=1
+num_of_iteration
+# %%
+4//4
+# %%
+
 # %%
