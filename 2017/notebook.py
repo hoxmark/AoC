@@ -259,6 +259,7 @@ def day5_2(instructions_set):
 # day5_2(in5)
 do(5)
 
+#%%
 in6 = data(6, parser=lambda x:  mapt(int, x.split("\t")))[0]
 #in6 = (0, 2, 7, 0)
 # in6 = (2, 4, 1, 2)
@@ -269,25 +270,27 @@ def day6_1(start_state):
     num_of_states = len(state)
     num_of_iteration = 0
     seen = {state: 0}
-    print(seen)
-    print(state)
+    counter = defaultdict(lambda x: 0)
     while state not in seen_states:
         seen_states.add(state)
         state = list(state)
         m = max(state) 
         bank_to_redistribute = state.index(m)
-        # print(m,num_of_states)
         left_over, times = divmod(m,num_of_states)
 
         state[bank_to_redistribute] = 0
         for i in range(m):
             index = (bank_to_redistribute+1+i)%(num_of_states)
             state[index] += 1
-            # print(state)
+            
         state = tuple(state)
         num_of_iteration+=1
+        if state in counter: 
+            return num_of_iteration,num_of_iteration-counter[state] 
+        counter[state] = num_of_iteration 
+        seen[state] = num_of_iteration 
 
-        seen[state] =num_of_iteration 
-    num_of_iteration, num_of_iteration - seen[state]
-    return num_of_iteration 
+day6_1(in6)
+# %%
 
+# %%
