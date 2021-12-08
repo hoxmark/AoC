@@ -2,26 +2,20 @@ with open('Input1.txt') as f:
     lines = [int(l) for l in f]
 
 
-def find_num_of_increase(lines):
-    res = []
-    for i,v in enumerate(lines):
-        #print(lines[i], lines[i-1])
-        is_larger = lines[i]>lines[i-1]
-        res.append(is_larger)
-    return sum(res)
+def num_inc(l):
+    return sum([l[i]>l[i-1] for i in range(1,len(l))])
 
+def sum_window(l, size=3):
+    return [sum(l[i:i+size])
+            for i in range(len(l)-size + 1)]
 
+def day1_1(l):
+    return num_inc(lines)
 
-print(find_num_of_increase(lines))
+def day1_2(l):
+    return num_inc(sum_window(lines))
 
-#seq=[199, 200, 208, 210, 200, 207, 240, 269, 260, 263]
-seq=lines
-window_size = 3
+print(day1_1(lines))
 
-lines2 = []
-for i in range(len(seq) - window_size + 1):
-    s = seq[i: i + window_size]
-    lines2.append(sum(s))
-print(lines2)
-print(find_num_of_increase(lines2))
+print(day1_2(lines))
 
