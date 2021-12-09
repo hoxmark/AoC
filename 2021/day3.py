@@ -83,12 +83,4 @@ print(c)
 
 print('res', c*o)
 
-#----
-
- # using reduce to compute maximum element from list
- #print("The maximum element of the list is : ", end="")
- #print(functools.reduce(lambda a, b: a if a > b else b, lis))
-
-#functools.reduce(lambda a,b: 
-
 

@@ -1,9 +1,6 @@
 with open('input5.txt') as f:
-    #lines = [list(map(lambda x: list(map(lambda x: int(x), tuple(x.split(',')))), tuple(l.strip().split(' -> ')))) for l in f]
-
     lines = [list(map(lambda x: list(map(lambda x: int(x), tuple(x.split(',')))), tuple(l.strip().split(' -> ')))) for l in f]
 
-print(lines)
 def flatten(t):
     return [item for sublist in t for item in sublist]
 all_points = flatten(flatten(lines))

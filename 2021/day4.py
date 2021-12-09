@@ -66,8 +66,4 @@ for num in rand_numbers:
             black_list.append(i)
             
 
-        #if found: 
-        #    print(int(num)*val)
-        #    break
-
 
