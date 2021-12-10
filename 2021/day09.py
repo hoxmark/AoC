@@ -1,6 +1,6 @@
-#%%
+#%% Day 9 
 import numpy as np
-with open('input9.txt') as f:
+with open('data/input9.txt') as f:
     lines = [list(map(lambda x: int(x),l.strip())) for l in f]
 
 grid = np.array(lines)

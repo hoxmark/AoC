@@ -1,4 +1,6 @@
-with open('input5.txt') as f:
+#%% Day 5
+
+with open('data/input5.txt') as f:
     lines = [list(map(lambda x: list(map(lambda x: int(x), tuple(x.split(',')))), tuple(l.strip().split(' -> ')))) for l in f]
 
 def flatten(t):

@@ -1,7 +1,7 @@
-#%%
+#%% Day 8
 from collections import Counter, defaultdict
 
-with open('input8.txt') as f: 
+with open('data/input8.txt') as f: 
     data = [l.strip().split(' | ') for l in f]
     wires = [l[0].split(" ") for l in data] #
     digits = [l[1].split(" ") for l in data] 

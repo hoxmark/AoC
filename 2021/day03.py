@@ -1,5 +1,6 @@
+#%% Day 3
 from collections import defaultdict
-with open('Input3.txt') as f:
+with open('data/input3.txt') as f:
     lines = [l.strip() for l in f]
 
 import operator

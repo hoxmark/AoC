@@ -1,30 +1,29 @@
-with open('input6_test.txt') as f: 
-    init_fish = [int(l) for l in f.readline().split(',')]
+#%% Day 6
+from collections import Counter
 
-print(init_fish)
+def day6(days=80):
+    n_times = 9
+    with open('data/input6.txt') as f: 
+        init_fish = [l for l in f.readline().split(',')]
+        cf = Counter(int(x) for x in init_fish)
+        counts = [cf[i] for i in range(n_times)] 
 
-print(f"Initial state:\t{init_fish}")
+    def next_step(counts):
+        counts2 =  [0 for i in range(n_times)]
+        for i in range(1, n_times):
+            counts2[i-1] = counts[i]
+        counts2[6] += counts[0]
+        counts2[n_times - 1] += counts[0]
+        return counts2
 
-import functools
+    for i in range(days):
+        counts = next_step(counts)    
+    print(sum(counts))
 
-#@functools.lru_cache(maxsize=128)
-def one_iteration(fs):
-    new_fs = []
-    for f in fs: 
-        if f == 0: 
-            new_fs.append(8)
-            new_fs.append(6)
-        else: 
-            new_fs.append(f-1)
-    return new_fs
+#%% Task 1
+day6()
 
-dataset = list(init_fish)
+#%% Task 2
+day6(256)
 
-number_of_days = 80
-for i in range(1, number_of_days+1):
-    dataset = one_iteration(dataset)
-    print(f"After day {i} \t: {dataset} => {len(dataset)}")
-    print(f"After day {i} \t: => {len(dataset)}")
-
-len(dataset)
 

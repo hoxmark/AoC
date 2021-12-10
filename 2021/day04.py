@@ -1,4 +1,5 @@
-with open('Input4.txt') as f:
+#%% Day 4
+with open('data/input4.txt') as f:
     rand_numbers = [num for num in f.readline().strip().split(",")]
     f.readline()
     lines = [l.split() for l in f]
@@ -67,3 +68,5 @@ for num in rand_numbers:
             
 
 
+
+# %%

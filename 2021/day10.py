@@ -1,5 +1,5 @@
-#%%
-with open('input10.txt') as f:
+#%% Day 10
+with open('data/input10.txt') as f:
     lines = [list(map(lambda x: x, l.strip())) for l in f]
 
 illegal_dict = {

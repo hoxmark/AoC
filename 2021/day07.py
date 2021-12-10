@@ -1,6 +1,6 @@
-#%%
+#%% Day 7
 import statistics
-with open('input7.txt') as f: 
+with open('data/input7.txt') as f: 
     subs = [int(l) for l in f.readline().split(',')]
 
 def day7_1(subs):

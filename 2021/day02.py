@@ -1,4 +1,5 @@
-with open('input2.txt') as f:
+#%% Day 2
+with open('data/input2.txt') as f:
     lines = [tuple(l.strip().split(" ")) for l in f]
 
     
@@ -40,3 +41,5 @@ for (op, val) in lines:
 
 print(h, d, aim)
 print(h*d)
+
+# %%
