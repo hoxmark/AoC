@@ -1,4 +1,4 @@
-#%%
+#%% Day 15
 import numpy as np
 from helper import Graph
 with open('data/input15_test.txt') as f:
