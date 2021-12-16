@@ -126,5 +126,6 @@ print("Task1, ", sum(v_counter))
 print("Task2, ", literal)
 
 assert(literal == 299227024091)
+assert(sum(v_counter) == 981)
 
 # %%
