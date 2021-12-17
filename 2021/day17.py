@@ -67,10 +67,8 @@ def test_t(init_cord: P, init_v: Velocity):
 
 hits = {}
 highest_y_all = 0
-for i in range(0, 300):
-    #for i in range(0, 50):
-    for j in range(-300, 300):
-        #for j in range(-50, 50):
+for i in range(0, (x2+1)):    
+    for j in range(y1, 300):        
 
         init_v = Velocity(i, j)
         hit, hy = test_t(sp, init_v)
@@ -94,4 +92,9 @@ def tests():
 
 tests()
 
+# %% Later learnt
+def task1():
+    y = min([y1,y2])
+    return abs(y) * (abs(y) - 1) / 2
+task1()
 # %%
