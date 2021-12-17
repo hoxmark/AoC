@@ -1,11 +1,12 @@
 #%% Day 17
 from collections import namedtuple
+import re
+
+with open('data/input17.txt') as f:
+    x1, x2, y1, y2 = map(int, re.findall(r'-?\d+', f.readline()))
 
 P = namedtuple('Point', ['x', 'y'])
 Velocity = namedtuple('Velocity', ['x', 'y'])
-
-target_area = [[185, 221], [-122, -74]]
-#target_area = [[20, 30], [-10, -5]]
 
 
 def calc_drag(v: Velocity) -> P:
@@ -35,14 +36,14 @@ def step(c: P, v: Velocity):
     return c, v
 
 
-def is_c_in_target(c: P, t) -> bool:
-    if t[0][0] <= c.x <= t[0][1] and t[1][0] <= c.y <= t[1][1]:
+def is_c_in_target(c: P) -> bool:
+    if x1 <= c.x <= x2 and y1 <= c.y <= y2:
         return True
 
 
 sp = P(0, 0)
-lowest_point_worth_looking = min(target_area[1])
-farthest_point_worth_looking = max(target_area[0])
+lowest_point_worth_looking = min([y1, y2])
+farthest_point_worth_looking = max([x1, x2])
 
 
 def test_t(init_cord: P, init_v: Velocity):
@@ -52,7 +53,7 @@ def test_t(init_cord: P, init_v: Velocity):
         c, v = step(c, v)
         if c.y > highest_y: highest_y = c.y
 
-        if is_c_in_target(c, target_area):
+        if is_c_in_target(c):
             return True, highest_y
 
         if c.y < lowest_point_worth_looking:
@@ -66,19 +67,20 @@ def test_t(init_cord: P, init_v: Velocity):
 
 hits = {}
 highest_y_all = 0
-for i in range(-300, 300):
+for i in range(0, 300):
+    #for i in range(0, 50):
     for j in range(-300, 300):
+        #for j in range(-50, 50):
 
         init_v = Velocity(i, j)
         hit, hy = test_t(sp, init_v)
 
         if hit:
             hits[init_v] = hy
-            print(len(hits))
 
 highest_init_v = max(hits, key=hits.get)
 print(highest_init_v)
-print('task1', hits[highest_init_v])
+print('task1', hits[highest_init_v], highest_init_v)
 print('task2', len(hits))
 
 
@@ -91,3 +93,5 @@ def tests():
 
 
 tests()
+
+# %%
