@@ -82,13 +82,12 @@ print('task1', hits[highest_init_v], highest_init_v)
 print('task2', len(hits))
 
 
-#%%
+#%% for test case 
 def tests():
     assert (test_t(sp, Velocity(7, 2))[0])
     assert (test_t(sp, Velocity(6, 3))[0])
     assert (test_t(sp, Velocity(9, 0))[0])
     assert ((False == test_t(sp, Velocity(17, -4))[0]))
-
 
 tests()
 
