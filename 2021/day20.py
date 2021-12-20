@@ -59,7 +59,8 @@ def on_iteration(grid, pad_val=0):
 
 def task(grid, times=2):
     for i in range(times):
-        grid = on_iteration(grid, pad_val=(i % 2 == 1))
+        val = (i % 2 == 1) # padding fluxes between 1 and 0
+        grid = on_iteration(grid, pad_val=val) 
     return np.sum(grid, axis=(0, 1))
 
 
@@ -67,3 +68,4 @@ print('task1', task(grid))
 
 # %%
 print('task2', task(grid, times=50))
+
