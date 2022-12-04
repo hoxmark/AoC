@@ -1,4 +1,4 @@
-"""3. day of advent of code 2022 https://adventofcode.com/2022/leaderboard """
+"""3. day of advent of code 2022 https://adventofcode.com/2022 """
 #%%
 
 # %% import data
@@ -38,5 +38,3 @@ for d in chunks(data, 3):
     r = list(r)[0]
     r_2.append(l_n[r])
 print("task 2:", sum(r_2))
-
-# %%

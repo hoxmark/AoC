@@ -1,4 +1,4 @@
-"""2nd day of advent of code 2022 https://adventofcode.com/2022/leaderboard """
+"""2nd day of advent of code 2022 https://adventofcode.com/2022 """
 # %% import data
 FILE_NAME = "input.txt"
 with open(FILE_NAME, encoding="utf-8") as f:

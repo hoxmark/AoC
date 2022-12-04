@@ -1,4 +1,4 @@
-"""4. day of advent of code 2022 https://adventofcode.com/2022/leaderboard """
+"""4. day of advent of code 2022 https://adventofcode.com/2022"""
 #%% import data
 
 FILE_NAME = "input.txt"
