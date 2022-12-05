@@ -1,13 +1,5 @@
 """5nd day of advent of code 2022 https://adventofcode.com/2022 """
 #%%
-# import itertools
-
-# import math
-# import re
-# from collections import Counter, defaultdict, deque, namedtuplefrom
-# import statistics
-# import numpy as np
-# import functools
 import copy
 
 
