@@ -1,9 +1,6 @@
 """Day one of advent of code 2023 https://adventofcode.com/2023 """
 # %% import data
 FILE_NAME = "input.txt"
-# with open(FILE_NAME, encoding="utf-8") as f:
-#     data = [l.strip() for l in f.readlines()]
-# data
 data = open(FILE_NAME, encoding="utf-8").read().splitlines()
 
 
@@ -43,12 +40,11 @@ def scan_string(data, rev):
     else:
         for i in range(len(data) + 1):
             for x, v in rep.items():
-                if str(v) in data[0:i]:
-                    print(data[i - 1], x, v, data)
+                if x in data[0:i]:
                     return v
 
             for x, v in rep.items():
-                if x in data[0:i]:
+                if str(v) in data[0:i]:
                     return v
 
 
