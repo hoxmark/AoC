@@ -1,4 +1,4 @@
-"""Day two of advent of code 2023 https://adventofcode.com/2023 """
+"""Day three of advent of code 2023 https://adventofcode.com/2023 """
 # %% import data
 import math as m
 
@@ -11,10 +11,12 @@ flatten = lambda l: [item for sublist in l for item in sublist]
 def find_all_legal_adjacent(loc):
     i, j = loc
 
+    # fmt: off
     offsets = [(-1, -1), (-1, 0), (-1, 1), 
-               (0, -1),           (0, 1), 
-               (1, -1), (1, 0), (1, 1)]
-    
+               (0, -1),           (0, 1),  
+               (1, -1), (1, 0), (1, 1)]    
+    # fmt: on
+
     return [(i + di, j + dj) for di, dj in offsets]
 
 
