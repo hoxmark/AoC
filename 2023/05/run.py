@@ -7,9 +7,8 @@ FILE_NAME = "input.txt"
 data = open(FILE_NAME, encoding="utf-8").read().splitlines()
 
 seeds = list(map(int, data[0][data[0].index(":") + 1 :].strip().split(" ")))
-seeds
 
-# %%
+# %%task 1
 maps = {}
 current = None
 for l in data[2:]:
@@ -21,16 +20,11 @@ for l in data[2:]:
         pass
     else:
         maps[current].append(list(map(int, l.strip().split(" "))))
-maps
 
 
-# %%
 def find_in_map(current, m):
     for v in m:
-        # print("v", v)
         dest, source, r = v
-        # print("dest", dest, "source", source, "current", current)
-
         if current >= source and current < (source + r):
             c = current + dest - source
             return c
@@ -40,15 +34,34 @@ def find_in_map(current, m):
 
 r = []
 for s in seeds:
-    print("seed", s)
     current = s
-
     for k, v in maps.items():
-        # print(k, v)
         current = find_in_map(current, v)
-        # print(current)
-    print("end:", current)
     r.append(current)
 
 min(r)
-# %%
+# %% task2
+
+seeds = [(seed, seed + r) for seed, r in zip(seeds[::2], seeds[1::2])]
+
+for m in maps.values():
+    ranges = m
+    new = []
+    while len(seeds) > 0:
+        s, e = seeds.pop()
+        for a, b, c in ranges:
+            os = max(s, b)
+            oe = min(e, b + c)
+            if os < oe:
+                new.append((os - b + a, oe - b + a))
+                if os > s:
+                    seeds.append((s, os))
+                if e > oe:
+                    seeds.append((oe, e))
+                break
+        else:
+            new.append((s, e))
+    seeds = new
+
+print(min(seeds)[0])
+assert 37806486 == min(seeds)[0]
